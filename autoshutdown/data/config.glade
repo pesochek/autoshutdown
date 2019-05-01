@@ -87,6 +87,23 @@
                   </packing>
                 </child>
                 <child>
+                  <widget class="GtkRadioButton" id="button_close">
+                    <property name="label" translatable="yes">Close Deluge</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
+                    <property name="border_width">10</property>
+                    <property name="use_underline">True</property>
+                    <property name="draw_indicator">True</property>
+                    <property name="group">button_shutdown</property>
+                  </widget>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">4</property>
+                  </packing>
+                </child>
+                <child>
                   <widget class="GtkCheckButton" id="once_check">
                     <property name="label" translatable="yes">Only once, then Do Nothing</property>
                     <property name="visible">True</property>
@@ -99,7 +116,7 @@
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">False</property>
-                    <property name="position">4</property>
+                    <property name="position">5</property>
                   </packing>
                 </child>
               </widget>

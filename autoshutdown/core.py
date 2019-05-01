@@ -142,6 +142,12 @@ class Core(CorePluginBase):
             self.os_hibernate()
         elif self.config["system_state"] == 'suspend':
             self.os_suspend()
+        elif self.config["system_state"] == 'close':
+            self.close_app()
+
+    def close_app(self):
+        log.info("[AutoShutDown] Closing Deluge...")
+        component.get('MainWindow').quit(shutdown=True)
 
     def os_suspend(self):
             log.info("[AutoShutDown] Suspending...")

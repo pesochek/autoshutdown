@@ -69,6 +69,8 @@ class GtkUI(GtkPluginBase):
                 config["system_state"] =  "shutdown"
         elif self.glade.get_widget("button_suspend").get_active():
                 config["system_state"] = "suspend"
+        elif self.glade.get_widget("button_close").get_active():
+                config["system_state"] = "close"
         if self.glade.get_widget("once_check").get_active():
                     config["once"] = True
         else:
@@ -89,6 +91,8 @@ class GtkUI(GtkPluginBase):
             "hibernate" == config["system_state"])
         self.glade.get_widget("button_suspend").set_active(
             "suspend" == config["system_state"])
+        self.glade.get_widget("button_close").set_active(
+            "close" == config["system_state"])
         self.glade.get_widget("once_check").set_active(config["once"])
         self.glade.get_widget("button_disable").set_active(
             not config["enabled"] or not config["system_state"])

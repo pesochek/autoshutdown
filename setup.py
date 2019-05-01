@@ -43,12 +43,12 @@ from setuptools import setup
 __plugin_name__ = "AutoShutdown"
 __author__ = "Calum Lind"
 __author_email__ = "calumlind@gmail.com"
-__version__ = "1.5.0"
+__version__ = "1.5.1"
 __url__ = "https://github.com/cas--/autoshutdown/"
 __license__ = "GPLv3"
-__description__ = "Shutdown your system once torrents are complete"
+__description__ = "Shutdown your system or close Deluge once torrents are complete"
 __long_description__ = """
-A plugin to automatically suspend, hibernate or shutdown your system.
+A plugin to automatically suspend, hibernate or shutdown your system (can also close Deluge app).
 
 Works on Linux and Windows but not OS X.
 """
