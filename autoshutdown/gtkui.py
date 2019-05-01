@@ -22,9 +22,9 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with deluge.    If not, write to:
-# 	The Free Software Foundation, Inc.,
-# 	51 Franklin Street, Fifth Floor
-# 	Boston, MA  02110-1301, USA.
+#   The Free Software Foundation, Inc.,
+#   51 Franklin Street, Fifth Floor
+#   Boston, MA  02110-1301, USA.
 #
 #    In addition, as a special exception, the copyright holders give
 #    permission to link the code of portions of this program with the OpenSSL
@@ -69,6 +69,10 @@ class GtkUI(GtkPluginBase):
                 config["system_state"] =  "shutdown"
         elif self.glade.get_widget("button_suspend").get_active():
                 config["system_state"] = "suspend"
+        if self.glade.get_widget("once_check").get_active():
+                    config["once"] = True
+        else:
+                config["once"] = False
         config["enabled"] = not self.glade.get_widget("button_disable").get_active()
         client.autoshutdown.set_config(config)
 
@@ -78,9 +82,17 @@ class GtkUI(GtkPluginBase):
     def cb_get_config(self, config):
         "callback for on show_prefs"
         log.debug("callback for on show_prefs")
-        self.glade.get_widget("button_shutdown").set_active("shutdown" in config["system_state"])
-        self.glade.get_widget("button_hibernate").set_active("hibernate" in config["system_state"])
-        self.glade.get_widget("button_suspend").set_active("suspend" in config["system_state"])
-        self.glade.get_widget("button_disable").set_active(not config["enabled"])
-        self.glade.get_widget("button_hibernate").set_sensitive(config["can_hibernate"])
-        self.glade.get_widget("button_suspend").set_sensitive(config["can_suspend"])
+
+        self.glade.get_widget("button_shutdown").set_active(
+            "shutdown" == config["system_state"])
+        self.glade.get_widget("button_hibernate").set_active(
+            "hibernate" == config["system_state"])
+        self.glade.get_widget("button_suspend").set_active(
+            "suspend" == config["system_state"])
+        self.glade.get_widget("once_check").set_active(config["once"])
+        self.glade.get_widget("button_disable").set_active(
+            not config["enabled"] or not config["system_state"])
+        self.glade.get_widget("button_hibernate").set_sensitive(
+            config["can_hibernate"])
+        self.glade.get_widget("button_suspend").set_sensitive(
+            config["can_suspend"])
